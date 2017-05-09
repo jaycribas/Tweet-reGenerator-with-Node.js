@@ -6,3 +6,17 @@ html(lang='en')
     h1 Retweeter
     p #{twitter.statuses[0].text}
     p #{twitter.statuses[1].text}
+
+  form(
+    action='/tweet'
+    method='post'
+  )
+    input(
+      type='text'
+      placeholder='Tweet'
+      name='twit'
+    )
+    button(
+      type='submit'
+      name='send'
+      ) SEND
