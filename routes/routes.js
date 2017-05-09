@@ -17,10 +17,21 @@ let params = {
 }
 
 router.get('/', (req, res) => {
-  client.get(`search/tweets`, params)
+  client.get('search/tweets', params)
   .then ( data => {
-    console.log('data ========>', data)
     res.render('index', { twitter: data })
+  })
+})
+
+router.post('/tweet', (req,res) => {
+  client.post('statuses/update', { status: req.body.twit })
+  .then ( tweet => {
+    console.log(tweet)
+    res.status(201)
+    res.redirect('/')
+  })
+  .catch( error => {
+    res.sendStatus(400)
   })
 })
 
