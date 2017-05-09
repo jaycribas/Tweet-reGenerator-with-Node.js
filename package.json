@@ -1,0 +1,35 @@
+{
+  "name": "tweet-regenerator-with-node-js",
+  "version": "1.0.0",
+  "description": "Team: Jay Cribas   Project name: #roasted-armadillo",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaycribas/Tweet-reGenerator-with-Node.js.git"
+  },
+  "keywords": [
+    "twitter",
+    "regenerator"
+  ],
+  "author": "Jay Cribas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaycribas/Tweet-reGenerator-with-Node.js/issues"
+  },
+  "homepage": "https://github.com/jaycribas/Tweet-reGenerator-with-Node.js#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "pug": "^2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}
