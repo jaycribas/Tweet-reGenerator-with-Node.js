@@ -4,19 +4,25 @@ html(lang='en')
     title Retweet
   body
     h1 Retweeter
-    p #{twitter.statuses[0].text}
-    p #{twitter.statuses[1].text}
 
-  form(
-    action='/tweet'
-    method='post'
-  )
-    input(
-      type='text'
-      placeholder='Tweet'
-      name='twit'
+    form(
+      action='/tweet'
+      method='post'
     )
-    button(
-      type='submit'
-      name='send'
+      input(
+        type='text'
+        placeholder='Tweet'
+        name='twit'
+      )
+      button(
+        type='submit'
       ) SEND
+    
+    table  
+      thead
+        tr
+          th database tweets
+      tbody
+        for twit in tweets
+          tr
+            td= twit.tweet
