@@ -39,6 +39,17 @@ router.post('/tweet', (req, res) => {
   })
 })
 
+router.post('/retweet/:id_str', (req, res) => {
+  client.post('statuses/retweet/' + req.params.id_str, { id: req.params.id_str })
+  .then(() => {
+    res.redirect('/')
+  })
+  .catch( error => {
+    console.log( error )
+    res.sendStatus(400)
+  })
+})
+
 /* SEARCH */
 // let params = {
 //   q: 'banana since:2011-11-11',
