@@ -1,10 +1,6 @@
-doctype html
-html(lang='en')
-  head
-    title Retweet
-  body
-    h1 Retweeter
+extends layout
 
+block content
     form(
       action='/tweet'
       method='post'
@@ -26,3 +22,11 @@ html(lang='en')
         for twit in tweets
           tr
             td= twit.tweet
+              form(
+                action='/retweet/' + twit.id_str
+                method='post'
+              )
+                button(
+                  class='btn'
+                  type='submit'
+                ) retweet

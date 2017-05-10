@@ -18,7 +18,7 @@ const saveTweet = ( tweet ) => {
     VALUES
       ($/text/, $/id_str/)
     RETURNING
-      *;
+      *
   `, tweet )
 }
 
