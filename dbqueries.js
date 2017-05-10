@@ -16,10 +16,10 @@ const saveTweet = ( tweet ) => {
     INSERT INTO
       tweets (tweet, id_str)
     VALUES
-      ($1, $2)
+      ($/text/, $/id_str/)
     RETURNING
       *;
-  `,  [ tweet.text, tweet.id_str ] )
+  `, tweet )
 }
 
 module.exports = {
