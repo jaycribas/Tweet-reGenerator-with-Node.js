@@ -1,0 +1,52 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+nav {
+  padding-left: 10%;
+  background-color: #8C8979;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+form {
+  display: inline-block;
+}
+
+button.retweet {
+  height: 9px;
+  width: 9px;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+header {
+  padding-left: 10%;
+  background-color: #262526;
+  color: white;
+}
+
+table {
+  width: 90%;
+}
+
+i {
+  color: #F60A20;
+}
+
+h1 {
+  display: inline-block;
+}
+
+body {
+  background-color: #F2F2F2;
+}
