@@ -32,6 +32,7 @@ router.post('/tweet', (req, res) => {
     res.redirect('/')
   })
   .catch(error => {
+    console.log("ERROR (╯°□°）╯︵ ┻━┻", error)
     res.status(500).render('error', {
       error: error,
       message: error.message,
@@ -41,7 +42,7 @@ router.post('/tweet', (req, res) => {
 
 router.post('/retweet/:id_str', (req, res) => {
   client.post('statuses/retweet/' + req.params.id_str, { id: req.params.id_str })
-  .then(() => {
+  .then( () => {
     res.redirect('/')
   })
   .catch( error => {
@@ -50,21 +51,23 @@ router.post('/retweet/:id_str', (req, res) => {
   })
 })
 
-/* SEARCH */
-// let params = {
-//   q: 'banana since:2011-11-11',
-//   count: 2
-// }
-//
-// router.get('/', (req, res) => {
-//   client.get('search/tweets', params)
-//   .then ( data => {
-//     res.render('index', { twitter: data })
-//   })
-// })
+const tweeter = () => {
+  db.randomTweet()
+  .then ( random => {
+    client.post('statuses/retweet/' + random.id_str, { id: random.id_str })
+  })
+  .then( () => {
+    res.redirect('/')
+  })
+  .catch( error => {
+    console.log( error )
+    res.sendStatus(400)
+  })
+}
 
-// console.log("(╯°□°）╯︵ ┻━┻", response)
+tweeter();
 
+setInterval(tweeter, 1000*20)
 
 module.exports = {
   router,

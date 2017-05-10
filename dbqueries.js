@@ -22,7 +22,21 @@ const saveTweet = ( tweet ) => {
   `, tweet )
 }
 
+const randomTweet = () => {
+  return db.one(`
+    SELECT
+      id_str
+    FROM
+      tweets
+    ORDER BY
+      RANDOM()
+    LIMIT
+      1
+  `)
+}
+
 module.exports = {
   listTweets,
-  saveTweet
+  saveTweet,
+  randomTweet
 }
