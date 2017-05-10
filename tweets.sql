@@ -5,5 +5,6 @@ CREATE DATABASE twitter;
 
 CREATE TABLE tweets (
   id SERIAL PRIMARY KEY,
-  tweet VARCHAR(140)
+  tweet VARCHAR(140),
+  id_str VARCHAR
 )
