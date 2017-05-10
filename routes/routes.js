@@ -56,8 +56,7 @@ router.get('/', (req, res) => {
 router.post('/tweet', (req, res) => {
   client.post('statuses/update', { status: req.body.twit })
   .then( response => {
-    // console.log("(╯°□°）╯︵ ┻━┻", response)
-    db.saveTweet( response.text )
+    db.saveTweet( response )
   })
   .then (() => {
     res.redirect('/')
@@ -67,7 +66,7 @@ router.post('/tweet', (req, res) => {
       error: error,
       message: error.message,
   })
-})
+  })
 })
 
 module.exports = {

@@ -14,12 +14,12 @@ const listTweets = () => {
 const saveTweet = ( tweet ) => {
   return db.one(`
     INSERT INTO
-      tweets (tweet)
+      tweets (tweet, id_str)
     VALUES
-      ($1)
+      ($1, $2)
     RETURNING
-      *
-  `, [tweet] )
+      *;
+  `,  [ tweet.text, tweet.id_str ] )
 }
 
 module.exports = {
