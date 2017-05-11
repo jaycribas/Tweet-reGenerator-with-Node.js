@@ -16,9 +16,9 @@ const listTweets = () => {
 const saveTweet = ( tweet ) => {
   return db.one(`
     INSERT INTO
-      tweets (tweet)
+      tweets (tweet, last_sent)
     VALUES
-      ($/tweet/)
+      ($/text/, $/created_at/)
     RETURNING
       *
   `, tweet )
