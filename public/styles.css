@@ -20,6 +20,11 @@ form {
   display: inline-block;
 }
 
+a.nav-link {
+  align-self: flex-end;
+  color: white;
+}
+
 button.retweet {
   height: 9px;
   width: 9px;

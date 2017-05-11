@@ -12,6 +12,7 @@ const client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
+/*--- Index page of user timeline from Twitter ---*/
 router.get('/', (req, res) => {
   client.get('statuses/user_timeline', {screen_name: 'jaycribas', count: 200})
   .then ( data => {
@@ -23,6 +24,7 @@ router.get('/', (req, res) => {
   })
 })
 
+/*--- Stored Tweets page from database ---*/
 router.get('/stored-tweets', (req, res) => {
   db.listTweets()
   .then ( data => {
@@ -34,6 +36,7 @@ router.get('/stored-tweets', (req, res) => {
   })
 })
 
+/*--- New tweet posts to Twitter and database ---*/
 router.post('/tweet', (req, res) => {
   client.post('statuses/update', { status: req.body.twit })
   .then( response => {
@@ -51,6 +54,7 @@ router.post('/tweet', (req, res) => {
   })
 })
 
+/*--- Retweet posts from database to Twitter ---*/
 router.post('/retweet/:id_str', (req, res) => {
   client.post('statuses/retweet/' + req.params.id_str, { id: req.params.id_str })
   .then( () => {
