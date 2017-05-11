@@ -50,3 +50,8 @@ h1 {
 body {
   background-color: #F2F2F2;
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}

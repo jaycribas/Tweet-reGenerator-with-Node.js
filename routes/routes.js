@@ -13,9 +13,20 @@ const client = new Twitter({
 });
 
 router.get('/', (req, res) => {
-  db.listTweets()
+  client.get('statuses/user_timeline', {screen_name: 'jaycribas', count: 200})
   .then ( data => {
     res.render( 'index', { tweets: data })
+  })
+  .catch( error => {
+    console.log( error )
+    res.sendStatus(400)
+  })
+})
+
+router.get('/stored-tweets', (req, res) => {
+  db.listTweets()
+  .then ( data => {
+    res.render( 'stored-tweets', { tweets: data })
   })
   .catch( error => {
     console.log( error )
@@ -32,6 +43,7 @@ router.post('/tweet', (req, res) => {
     res.redirect('/')
   })
   .catch(error => {
+    console.log("ERROR (╯°□°）╯︵ ┻━┻", error)
     res.status(500).render('error', {
       error: error,
       message: error.message,
@@ -41,7 +53,7 @@ router.post('/tweet', (req, res) => {
 
 router.post('/retweet/:id_str', (req, res) => {
   client.post('statuses/retweet/' + req.params.id_str, { id: req.params.id_str })
-  .then(() => {
+  .then( () => {
     res.redirect('/')
   })
   .catch( error => {
@@ -50,21 +62,20 @@ router.post('/retweet/:id_str', (req, res) => {
   })
 })
 
-/* SEARCH */
-// let params = {
-//   q: 'banana since:2011-11-11',
-//   count: 2
-// }
+const tweeter = () => {
+  db.randomTweet()
+  .then ( random => {
+    client.post('statuses/retweet/' + random.id_str, { id: random.id_str })
+  })
+  .catch( error => {
+    console.log('error---->', error )
+    res.sendStatus(400)
+  })
+}
+
+// tweeter();
 //
-// router.get('/', (req, res) => {
-//   client.get('search/tweets', params)
-//   .then ( data => {
-//     res.render('index', { twitter: data })
-//   })
-// })
-
-// console.log("(╯°□°）╯︵ ┻━┻", response)
-
+// setInterval(tweeter, 1000*60)
 
 module.exports = {
   router,
