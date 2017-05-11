@@ -11,9 +11,10 @@ block content
       table.tweets.datatable
         thead
           tr
-            th Stored tweet
+            th Stored Tweet
+            th Last Sent On...
         tbody
-          for twit in tweets
+          each twit in tweets
             tr
               td= twit.tweet
                 form(
@@ -24,9 +25,11 @@ block content
                     type='submit'
                   )
                     i.fa.fa-retweet
+              td= twit.last_sent
 
     script.
       $('.tweets').DataTable( {
-      'iDisplayLength': 50
+      'iDisplayLength': 50,
+      'aaSorting': [1,'desc']
       });
       $('.dataTables_filter input').attr("placeholder", "search");
