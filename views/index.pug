@@ -3,6 +3,12 @@ extends layout
 block content
   body
     nav
+      a.nav-link(
+        href='/stored-tweets'
+      ) View Stored Tweets
+        
+    main
+      h2 User timeline
       form(
         action='/tweet'
         method='post'
@@ -11,12 +17,17 @@ block content
           type='text'
           placeholder='New Tweet'
           name='twit'
+          maxlength="140"
         )
+        select(name='frequency')
+          option(value='1000*30') 30 seconds
+          option(value='1000*60') 1 minute
+          option(value='1000*60*5') 5 minutes
+          option(value='1000*60*60') 1 hour
         button(
           type='submit'
         ) SEND
-        
-    main
+
       ul
         for twit in tweets
           li= twit.text

@@ -1,18 +1,23 @@
 extends layout
 
 block content
+    nav
+      a.nav-link(
+        href='/'
+      ) Back to Home
 
     main
-      table.tweets.datatable.table.table-striped.table-bordered(cellpadding='0', cellspacing='0', border='0')
+      h2 Stored Tweets
+      table.tweets.datatable
         thead
           tr
-            th saved tweets
+            th Stored tweet
         tbody
           for twit in tweets
             tr
               td= twit.tweet
                 form(
-                  action='/retweet/' + twit.id_str
+                  action='/dbretweet/' + twit.id_str
                   method='post'
                 )
                   button.retweet(
