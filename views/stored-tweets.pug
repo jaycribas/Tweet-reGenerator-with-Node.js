@@ -7,16 +7,17 @@ block content
       ) Back to Home
 
     main
+      h2 Stored Tweets
       table.tweets.datatable
         thead
           tr
-            th saved tweets
+            th Stored tweet
         tbody
           for twit in tweets
             tr
               td= twit.tweet
                 form(
-                  action='/retweet/' + twit.id_str
+                  action='/dbretweet/' + twit.id_str
                   method='post'
                 )
                   button.retweet(
