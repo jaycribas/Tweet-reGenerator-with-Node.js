@@ -13,9 +13,20 @@ const client = new Twitter({
 });
 
 router.get('/', (req, res) => {
-  db.listTweets()
+  client.get('statuses/user_timeline', {screen_name: 'jaycribas', count: 200})
   .then ( data => {
     res.render( 'index', { tweets: data })
+  })
+  .catch( error => {
+    console.log( error )
+    res.sendStatus(400)
+  })
+})
+
+router.get('/stored-tweets', (req, res) => {
+  db.listTweets()
+  .then ( data => {
+    res.render( 'stored-tweets', { tweets: data })
   })
   .catch( error => {
     console.log( error )
@@ -56,18 +67,15 @@ const tweeter = () => {
   .then ( random => {
     client.post('statuses/retweet/' + random.id_str, { id: random.id_str })
   })
-  .then( () => {
-    res.redirect('/')
-  })
   .catch( error => {
-    console.log( error )
+    console.log('error---->', error )
     res.sendStatus(400)
   })
 }
 
-tweeter();
-
-setInterval(tweeter, 1000*20)
+// tweeter();
+//
+// setInterval(tweeter, 1000*60)
 
 module.exports = {
   router,
