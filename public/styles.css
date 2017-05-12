@@ -7,6 +7,18 @@ main {
   margin: 0 auto;
 }
 
+.login {
+  background-color: #363636;
+  margin: auto;
+  text-align: center;
+}
+
+.oauth {
+  position: absolute;
+  top: 150px;
+  left: 42%;
+}
+
 nav {
   padding-left: 10%;
   background-color: #8C8979;
