@@ -32,14 +32,14 @@ Developers/Learners will get practice working with Twitter's REST APIs on the ba
 
 ## Specifications
 
-- [ ] App uses the Twitter API.
-- [ ] Users can view up to fifty of their most recent tweets from Twitter.
-- [ ] When user sends out a tweet, it is automatically saved to the database for future access.
-- [ ] Users can view their saved tweets (the ones in the database, not the ones from Twitter).
-- [ ] Users automatically re-tweet saved tweets at a specified interval (on the hour, for example).
-- [ ] UI provides an attractive, intuitive user experience.
-- [ ] Code is readable and well organized
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] App uses the Twitter API.
+- [x] Users can view up to fifty of their most recent tweets from Twitter.
+- [x] When user sends out a tweet, it is automatically saved to the database for future access.
+- [x] Users can view their saved tweets (the ones in the database, not the ones from Twitter).
+- [x] Users automatically re-tweet saved tweets at a specified interval (on the hour, for example).
+- [x] UI provides an attractive, intuitive user experience.
+- [x] Code is readable and well organized
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 ### Stretch
 
@@ -49,9 +49,9 @@ Developers/Learners will get practice working with Twitter's REST APIs on the ba
   - [ ] At a specific time in the future
 - [ ] Users can view which saved tweets have been re-tweeted and when.
 - [ ] Users can edit saved tweets.
-- [ ] Users can delete saved tweets.
+- [x] Users can delete saved tweets.
 - [ ] Users can search for and save another user's tweets by accessing and capturing their Twitter feed.
-- [ ] Users can search for and save tweets by hashtag or search term.
+- [x] Users can search for and save tweets by hashtag or search term.
 - [ ] Users can organize saved tweets according to categories (use of filters).
 - [ ] Users can Tweet out a randomly selected tweet from the database with a specificied category.
 
