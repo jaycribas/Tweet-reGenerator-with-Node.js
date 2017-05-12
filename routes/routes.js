@@ -1,7 +1,9 @@
 import express from 'express'
 import Twitter from 'twitter'
-require('dotenv').config()
+import passport from 'passport'
+import { strategy } from '../passport'
 import db from '../dbqueries'
+require('dotenv').config()
 
 const router = express()
 
@@ -11,6 +13,8 @@ const client = new Twitter({
   access_token_key: process.env.ACCESS_TOKEN,
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
+
+passport.use( strategy )
 
 /*--- Index page of user timeline from Twitter ---*/
 router.get('/', (req, res) => {
@@ -58,6 +62,7 @@ router.post('/tweet', (req, res) => {
 })
 })
 
+/*--- Delete stored tweet from database ---*/
 router.post('/deleteTweet/:id', (req, res) => {
   db.deleteTweet(req.params.id)
   .then(() => {
@@ -70,6 +75,15 @@ router.post('/deleteTweet/:id', (req, res) => {
   })
   })
 })
+
+/*--- OAuth/Passport routes  ---*/
+router.get('/login', (req, res) => {
+  res.render( 'login')
+})
+router.get('/auth/twitter', passport.authenticate('twitter'))
+router.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/',
+  failureRedirect: '/'}))
+
 
 module.exports = {
   router,
