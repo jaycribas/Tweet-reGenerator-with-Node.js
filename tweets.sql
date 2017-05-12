@@ -6,5 +6,6 @@ CREATE DATABASE twitter;
 CREATE TABLE tweets (
   id SERIAL PRIMARY KEY,
   tweet VARCHAR(140),
-  last_sent VARCHAR
+  frequency VARCHAR,
+  last_sent TIMESTAMP(0)
 )

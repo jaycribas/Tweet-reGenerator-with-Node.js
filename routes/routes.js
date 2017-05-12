@@ -40,7 +40,7 @@ router.get('/stored-tweets', (req, res) => {
 router.post('/tweet', (req, res) => {
   client.post('statuses/update', { status: req.body.twit })
   .then( response => {
-    db.saveTweet( response )
+    db.saveTweet( req.body )
     const autoTweet = () => {
       let r = Math.floor(Math.random()*100)
       client.post('statuses/update', { status: req.body.twit + ' ' + r })
@@ -56,6 +56,19 @@ router.post('/tweet', (req, res) => {
       message: error.message,
   })
 })
+})
+
+router.post('/deleteTweet/:id', (req, res) => {
+  db.deleteTweet(req.params.id)
+  .then(() => {
+    res.redirect('back')
+  })
+  .catch(error => {
+    res.status(500).render('error', {
+      error: error,
+      message: error.message,
+  })
+  })
 })
 
 module.exports = {

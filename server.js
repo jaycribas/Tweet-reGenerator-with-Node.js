@@ -13,8 +13,5 @@ server.get('/', (req, res) => {
   res.render('index')
 })
 
-
 server.listen(3000)
 console.log('Server 3000 listening...')
-
-module.exports = { server }
