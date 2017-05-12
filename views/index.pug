@@ -13,13 +13,14 @@ block content
         action='/tweet'
         method='post'
       )
-        input(
+        input.newTweet(
           type='text'
           placeholder='New Tweet'
           name='twit'
           maxlength="140"
         )
         select(name='frequency')
+          option(value='' disabled selected) Frequency
           option(value='30000') 30 seconds
           option(value='60000') 1 minute
           option(value='300000') 5 minutes
@@ -32,14 +33,6 @@ block content
       ul
         for twit in tweets
           li= twit.text
-            //- form(
-            //-   action='/retweet/' + twit.id_str
-            //-   method='post'
-            //- )
-            //-   button.retweet(
-            //-     type='submit'
-            //-   )
-            //-     i.fa.fa-retweet
 
   script.
     $('.tweets').DataTable( {

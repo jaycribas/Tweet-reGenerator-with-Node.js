@@ -16,30 +16,40 @@ const listTweets = () => {
 const saveTweet = ( tweet ) => {
   return db.one(`
     INSERT INTO
-      tweets (tweet, last_sent)
+      tweets (tweet, frequency, last_sent)
     VALUES
-      ($/text/, $/created_at/)
+      ($/twit/, $/frequency/, now())
     RETURNING
       *
   `, tweet )
 }
 
-/*--- Randomly select one stored tweet ---*/
-const randomTweet = () => {
-  return db.one(`
-    SELECT
-      id_str
-    FROM
+const deleteTweet = ( id ) => {
+  return db.none(`
+    DELETE FROM
       tweets
-    ORDER BY
-      RANDOM()
-    LIMIT
-      1
+    WHERE
+    id = ${id}
   `)
 }
+
+// /*--- Randomly select one stored tweet ---*/
+// const randomTweet = () => {
+//   return db.one(`
+//     SELECT
+//       id_str
+//     FROM
+//       tweets
+//     ORDER BY
+//       RANDOM()
+//     LIMIT
+//       1
+//   `)
+// }
 
 module.exports = {
   listTweets,
   saveTweet,
-  randomTweet
+  deleteTweet
+  // randomTweet
 }

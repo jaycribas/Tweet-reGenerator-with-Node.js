@@ -12,24 +12,41 @@ block content
         thead
           tr
             th Stored Tweet
-            th Last Sent On...
+            th Frequency
+            th Date Created
         tbody
           each twit in tweets
             tr
-              td= twit.tweet
+              td     
                 form(
-                  action='/dbretweet/' + twit.id_str
+                  action='deletetweet/' + twit.id
                   method='post'
                 )
-                  button.retweet(
+                  button#x(
+                    onclick="return confirm('Are you sure you want to delete this tweet?')"
                     type='submit'
-                  )
-                    i.fa.fa-retweet
+                  ) 
+                    i.fa.fa-times
+                span= twit.tweet
+              -let f = twit.frequency
+                case f
+                  when '30000'
+                    td 30 seconds
+                  when '60000'
+                    td 1 minute
+                  when '300000'
+                    td 5 minutes
+                  when '6400000'
+                    td 1 hour
+                  when '86400000'
+                    td 24 hours
+                  default
+                    td none
               td= twit.last_sent
 
     script.
       $('.tweets').DataTable( {
       'iDisplayLength': 50,
-      'aaSorting': [1,'desc']
+      'aaSorting': [2,'desc']
       });
       $('.dataTables_filter input').attr("placeholder", "search");
